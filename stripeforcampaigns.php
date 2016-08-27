@@ -34,6 +34,11 @@ function stripeforcampaigns_uninstall() {
 }
 register_deactivation_hook( __FILE__, 'stripeforcampaigns_uninstall' );
 
+function stripeforcampaigns_enqueue() {
+	wp_enqueue_script('jquery.payment', plugin_dir_url( __FILE__ ) . 'jquery.payment.min.js', array('jquery'), '2.0.0', false);
+}
+add_action('wp_enqueue_scripts', 'stripeforcampaigns_enqueue');
+
 function stripeforcampaigns_menu() {
 	add_options_page('Stripe for Campaigns Options', 'Stripe for Campaigns', 'manage_options', 'stripeforcampaigns-options', 'stripeforcampaigns_options');
 }
